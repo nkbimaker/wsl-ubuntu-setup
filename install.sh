@@ -2,7 +2,7 @@
 set -eu
 
 REPO="https://github.com/nkbimaker/wsl-ubuntu-setup.git"
-DEST="$HOME/.wsl-ubuntu-setup"
+DEST="$HOME/src/github.com/nkbimaker/wsl-ubuntu-setup"
 
 echo "=== WSL Ubuntu Setup ==="
 
@@ -18,8 +18,9 @@ if [ -d "$DEST" ]; then
   git -C "$DEST" pull
 else
   echo "Cloning wsl-ubuntu-setup..."
+  mkdir -p "$(dirname "$DEST")"
   git clone "$REPO" "$DEST"
 fi
 
 # メイン処理実行
-bash "$DEST/setup.sh"
+bash "$DEST/bin/setup"
