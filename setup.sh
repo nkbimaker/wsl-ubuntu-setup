@@ -1,0 +1,51 @@
+#!/bin/bash
+set -eu
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/lib/utils.sh"
+
+# インストール先を PATH に追加
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+SYSTEM_MODULES=(
+  packages
+  locale
+  wsl
+)
+
+USER_MODULES=(
+  fish
+  ssh-agent
+  git
+  mise
+  zellij
+  claude-code
+  chezmoi
+)
+
+echo ""
+echo "=============================="
+echo "  WSL Ubuntu Setup"
+echo "=============================="
+echo ""
+
+echo "=== System setup (requires sudo) ==="
+for mod in "${SYSTEM_MODULES[@]}"; do
+  echo ""
+  echo "--- [system/$mod] ---"
+  bash "$SCRIPT_DIR/system/$mod.sh"
+done
+
+echo ""
+echo "=== User setup ==="
+for mod in "${USER_MODULES[@]}"; do
+  echo ""
+  echo "--- [user/$mod] ---"
+  bash "$SCRIPT_DIR/user/$mod.sh"
+done
+
+echo ""
+echo "=============================="
+echo "  Setup complete!"
+echo "  Restart your terminal."
+echo "=============================="

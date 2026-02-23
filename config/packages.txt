@@ -1,0 +1,10 @@
+build-essential
+curl
+wget
+git
+unzip
+ripgrep
+fd-find
+bat
+fzf
+fish
