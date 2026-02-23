@@ -1,0 +1,9 @@
+build-essential
+curl
+wget
+unzip
+ripgrep
+fd-find
+bat
+cmake
+zsh
