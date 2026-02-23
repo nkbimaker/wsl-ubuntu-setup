@@ -3,7 +3,7 @@ set -eu
 
 SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$SCRIPT_DIR/lib/utils.sh"
-source "$SCRIPT_DIR/lib/env.sh"
+source "$SCRIPT_DIR/config/env.sh"
 
 CURRENT_NAME=$(git config --global user.name 2>/dev/null || echo "")
 CURRENT_EMAIL=$(git config --global user.email 2>/dev/null || echo "")

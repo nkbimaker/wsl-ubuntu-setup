@@ -3,7 +3,7 @@ set -eu
 
 SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$SCRIPT_DIR/lib/utils.sh"
-source "$SCRIPT_DIR/lib/env.sh"
+source "$SCRIPT_DIR/config/env.sh"
 
 # fisher
 if fish -c "type -q fisher" 2>/dev/null; then

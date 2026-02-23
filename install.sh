@@ -1,9 +1,8 @@
 #!/bin/bash
 set -eu
-mkdir -p $HOME/src
 
 REPO="https://github.com/nkbimaker/wsl-ubuntu-setup.git"
-DEST="$HOME/src/wsl-ubuntu-setup"
+DEST="$HOME/.wsl-ubuntu-setup"
 
 echo "=== WSL Ubuntu Setup ==="
 

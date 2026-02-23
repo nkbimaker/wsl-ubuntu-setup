@@ -1,4 +1,4 @@
-export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Git
 export GIT_NAME="nAokI"
