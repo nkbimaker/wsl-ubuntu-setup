@@ -22,5 +22,10 @@ else
   git clone "$REPO" "$DEST"
 fi
 
+# ~/.local/bin に setup-wsl シンボリックリンクを作成
+mkdir -p "$HOME/.local/bin"
+ln -sf "$DEST/bin/setup" "$HOME/.local/bin/setup-wsl"
+echo "Linked: ~/.local/bin/setup-wsl -> $DEST/bin/setup"
+
 # メイン処理実行
 bash "$DEST/bin/setup"
