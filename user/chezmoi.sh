@@ -16,7 +16,7 @@ fi
 # dotfiles
 if [ -d "$HOME/.local/share/chezmoi" ]; then
   log_info "Updating dotfiles..."
-  chezmoi update --force
+  chezmoi init --apply
 else
   log_info "Initializing dotfiles..."
   chezmoi init --apply "$DOTFILES_REPO"
