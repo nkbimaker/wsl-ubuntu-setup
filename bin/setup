@@ -23,6 +23,8 @@ USER_MODULES=(
   starship
   eza
   fzf
+  gh
+  gh-dash
   lazygit
   zellij
   claude-code
