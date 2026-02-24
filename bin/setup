@@ -19,7 +19,6 @@ SYSTEM_MODULES=(
 USER_MODULES=(
   zsh
   ssh-agent
-  git
   mise
   starship
   eza
