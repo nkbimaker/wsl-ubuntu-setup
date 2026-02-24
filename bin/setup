@@ -10,13 +10,14 @@ export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 SYSTEM_MODULES=(
   packages
   git
+  emacs
   locale
   wsl
   docker
 )
 
 USER_MODULES=(
-  fish
+  zsh
   ssh-agent
   git
   mise

@@ -25,15 +25,18 @@ bash setup.sh
 
 | Module | 内容 |
 |--------|------|
-| packages | apt パッケージ + Git PPA（最新版） |
+| packages | apt パッケージ |
+| git | Git PPA（最新版）+ インストール |
+| emacs | Emacs PPA（最新版）+ インストール（nox） |
 | locale | タイムゾーン（Asia/Tokyo）・ロケール設定 |
 | wsl | wsl.conf の配置（systemd 有効化等） |
+| docker | Docker Engine + Compose |
 
 ### User
 
 | Module | 内容 |
 |--------|------|
-| fish | fish shell + fisher（プラグインマネージャ） |
+| zsh | デフォルトシェルを zsh に変更 |
 | ssh-agent | wsl2-ssh-agent（1Password SSH Agent 連携） |
 | git | git グローバル設定（user, editor, defaultBranch） |
 | mise | mise（ランタイムバージョン管理） |
@@ -45,28 +48,32 @@ bash setup.sh
 
 `config/packages.txt` で管理:
 
-- build-essential, curl, wget, git, unzip
+- build-essential, curl, wget, unzip
 - ripgrep, fd-find, bat, fzf
-- fish
+- zsh
 
 ## ディレクトリ構成
 ```
 wsl-ubuntu-setup/
 ├── install.sh              # ワンライナー用エントリポイント
-├── setup.sh                # オーケストレーター
+├── bin/
+│   └── setup               # オーケストレーター
 ├── lib/
-│   ├── utils.sh            # ユーティリティ関数
-│   └── env.sh              # 環境変数（PATH, Git設定等）
+│   └── utils.sh            # ユーティリティ関数
 ├── config/
+│   ├── env.sh              # 環境変数（PATH, Git設定等）
 │   └── packages.txt        # apt パッケージ一覧
 ├── system/
-│   ├── packages.sh         # apt + Git PPA
+│   ├── packages.sh         # apt パッケージ
+│   ├── git.sh              # Git PPA + インストール
+│   ├── emacs.sh            # Emacs PPA + インストール
 │   ├── locale.sh           # ロケール・タイムゾーン
 │   ├── wsl.sh              # wsl.conf 配置
+│   ├── docker.sh           # Docker Engine
 │   └── files/
 │       └── wsl.conf
 └── user/
-    ├── fish.sh             # fish + fisher
+    ├── zsh.sh              # zsh デフォルトシェル設定
     ├── ssh-agent.sh        # wsl2-ssh-agent
     ├── git.sh              # git グローバル設定
     ├── mise.sh             # mise

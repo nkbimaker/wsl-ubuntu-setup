@@ -6,4 +6,4 @@ ripgrep
 fd-find
 bat
 fzf
-fish
+zsh
