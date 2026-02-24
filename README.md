@@ -17,7 +17,9 @@ bash setup.sh
 ## 前提条件
 
 - WSL2 + Ubuntu 24.04
-- Windows 側で 1Password SSH Agent が有効化されていること
+- Windows 側で以下がセットアップ済みであること:
+  - **1Password デスクトップアプリ** — SSH Agent 有効化 + CLI 連携有効化（Settings > Developer）
+  - **1Password CLI** — `winget install AgileBits.1Password.CLI` でインストール
 
 ## インストールされるもの
 
