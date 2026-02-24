@@ -12,11 +12,6 @@ else
   sudo add-apt-repository -y ppa:ubuntuhandbook1/emacs
 fi
 
-# Emacs インストール (terminal only)
-if has_command emacs; then
-  log_skip "Emacs"
-else
-  log_info "Installing Emacs (nox)..."
-  sudo apt update
-  sudo apt install -y emacs-nox
-fi
+# Emacs インストール / アップグレード
+sudo apt update
+sudo apt install -y emacs-nox
