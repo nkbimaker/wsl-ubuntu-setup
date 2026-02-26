@@ -10,10 +10,10 @@ export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 SYSTEM_MODULES=(
   packages
   git
-  emacs
   locale
   wsl
   docker
+  emacs
 )
 
 USER_MODULES=(
@@ -28,6 +28,7 @@ USER_MODULES=(
   lazygit
   zellij
   claude-code
+  doom-emacs
   chezmoi
 )
 

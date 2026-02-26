@@ -4,14 +4,32 @@ set -eu
 SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$SCRIPT_DIR/lib/utils.sh"
 
-# Emacs PPA (最新版)
-if grep -q "ubuntuhandbook1/emacs" /etc/apt/sources.list.d/*.list 2>/dev/null; then
-  log_skip "Emacs PPA"
+# emacs-nox → emacs（GUI版）に切り替え
+if dpkg -s emacs &>/dev/null && ! dpkg -s emacs-nox &>/dev/null; then
+  log_skip "emacs (GUI version already installed)"
 else
-  log_info "Adding Emacs PPA..."
-  sudo add-apt-repository -y ppa:ubuntuhandbook1/emacs
+  if dpkg -s emacs-nox &>/dev/null; then
+    log_info "Removing emacs-nox..."
+    sudo apt remove -y emacs-nox
+  fi
+  log_info "Installing emacs (GUI version)..."
+  sudo apt update
+  sudo apt install -y emacs
 fi
 
-# Emacs インストール / アップグレード
-sudo apt update
-sudo apt install -y emacs-nox
+# Doom Emacs 依存パッケージ
+DEPS=(pandoc shellcheck)
+TO_INSTALL=""
+
+for pkg in "${DEPS[@]}"; do
+  if dpkg -s "$pkg" &>/dev/null; then
+    log_skip "$pkg"
+  else
+    TO_INSTALL="$TO_INSTALL $pkg"
+  fi
+done
+
+if [ -n "$TO_INSTALL" ]; then
+  log_info "Installing Doom dependencies:$TO_INSTALL"
+  sudo apt install -y $TO_INSTALL
+fi
