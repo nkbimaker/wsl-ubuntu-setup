@@ -4,6 +4,18 @@ set -eu
 SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$SCRIPT_DIR/lib/utils.sh"
 
+# Symbols Nerd Font Mono（Doom Emacs アイコン用）
+FONT_DIR="$HOME/.local/share/fonts"
+FONT_FILE="$FONT_DIR/SymbolsNerdFontMono-Regular.ttf"
+if has_file "$FONT_FILE"; then
+  log_skip "Symbols Nerd Font Mono"
+else
+  log_info "Installing Symbols Nerd Font Mono..."
+  mkdir -p "$FONT_DIR"
+  curl -fLo "$FONT_FILE" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
+  fc-cache -fv
+fi
+
 # fd シンボリックリンク（fd-find → fd）
 if has_command fd; then
   log_skip "fd symlink"
@@ -27,8 +39,13 @@ fi
 
 # doom install
 if [ -f "$HOME/.local/share/doom/env" ]; then
-  log_skip "doom install (already initialized)"
+  log_info "Upgrading Doom Emacs..."
+  "$HOME/.config/emacs/bin/doom" upgrade
 else
   log_info "Running doom install..."
-  "$HOME/.config/emacs/bin/doom" install
+  "$HOME/.config/emacs/bin/doom" install --env
 fi
+
+# ヘルスチェック
+log_info "Running doom doctor..."
+"$HOME/.config/emacs/bin/doom" doctor

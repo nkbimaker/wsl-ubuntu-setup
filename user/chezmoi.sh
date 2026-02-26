@@ -7,7 +7,8 @@ source "$SCRIPT_DIR/config/env.sh"
 
 # chezmoi
 if has_command chezmoi; then
-  log_skip "chezmoi"
+  log_info "Upgrading chezmoi..."
+  chezmoi upgrade
 else
   log_info "Installing chezmoi..."
   sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"

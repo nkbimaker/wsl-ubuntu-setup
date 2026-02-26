@@ -6,7 +6,8 @@ source "$SCRIPT_DIR/lib/utils.sh"
 source "$SCRIPT_DIR/config/env.sh"
 
 if has_command mise; then
-  log_skip "mise"
+  log_info "Upgrading mise..."
+  mise self-update
 else
   log_info "Installing mise..."
   curl https://mise.run | sh

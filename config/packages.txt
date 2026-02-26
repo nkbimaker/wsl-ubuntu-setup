@@ -5,5 +5,5 @@ unzip
 ripgrep
 fd-find
 bat
-fzf
+cmake
 zsh

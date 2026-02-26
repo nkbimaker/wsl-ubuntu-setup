@@ -4,21 +4,19 @@ set -eu
 SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$SCRIPT_DIR/lib/utils.sh"
 
-# emacs-nox → emacs（GUI版）に切り替え
-if dpkg -s emacs &>/dev/null && ! dpkg -s emacs-nox &>/dev/null; then
-  log_skip "emacs (GUI version already installed)"
-else
-  if dpkg -s emacs-nox &>/dev/null; then
-    log_info "Removing emacs-nox..."
-    sudo apt remove -y emacs-nox
-  fi
-  log_info "Installing emacs (GUI version)..."
-  sudo apt update
-  sudo apt install -y emacs
+# emacs-nox が残っていれば削除
+if dpkg -s emacs-nox &>/dev/null; then
+  log_info "Removing emacs-nox..."
+  sudo apt remove -y emacs-nox
 fi
 
+# Emacs（GUI版）インストール / アップグレード
+log_info "Installing/upgrading emacs..."
+sudo apt update
+sudo apt install -y emacs
+
 # Doom Emacs 依存パッケージ
-DEPS=(pandoc shellcheck)
+DEPS=(pandoc shellcheck fonts-symbola)
 TO_INSTALL=""
 
 for pkg in "${DEPS[@]}"; do

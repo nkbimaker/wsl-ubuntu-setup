@@ -29,39 +29,53 @@ bash setup.sh
 
 ### System（sudo 必要）
 
-| Module | 内容 |
-|--------|------|
-| packages | apt パッケージ |
-| git | Git PPA（最新版）+ インストール |
-| locale | タイムゾーン（Asia/Tokyo）・ロケール設定 |
-| wsl | wsl.conf の配置（systemd 有効化等） |
-| docker | Docker Engine + Compose |
-| emacs | Emacs GUI + Doom 依存パッケージ |
+| Module | 内容 | 再実行 |
+|--------|------|--------|
+| packages | apt パッケージ | ⏭️ スキップ |
+| git | Git PPA（最新版）+ インストール | 🔄 最新化 |
+| locale | タイムゾーン（Asia/Tokyo）・ロケール設定 | ⏭️ スキップ |
+| wsl | wsl.conf の配置（systemd 有効化等） | ⏭️ スキップ |
+| docker | Docker Engine + Compose | 🔄 最新化 |
+| emacs | Emacs GUI + Doom 依存パッケージ | 🔄 最新化 |
+| gh | GitHub CLI（PPA + インストール） | 🔄 最新化 |
 
 ### User
 
-| Module | 内容 |
-|--------|------|
-| zsh | デフォルトシェルを zsh に変更 |
-| ssh-agent | wsl2-ssh-agent（1Password SSH Agent 連携） |
-| mise | mise（ランタイムバージョン管理） |
-| starship | Starship プロンプト |
-| eza | eza（ls 代替） |
-| fzf | fzf（ファジーファインダー） |
-| gh | GitHub CLI + 認証 |
-| gh-dash | gh-dash（GitHub ダッシュボード） |
-| lazygit | lazygit（Git TUI） |
-| zellij | zellij（ターミナルマルチプレクサ） |
-| claude-code | Claude Code CLI |
-| doom-emacs | Doom Emacs（クローン + インストール） |
-| chezmoi | chezmoi + dotfiles の適用 |
+| Module | 内容 | 再実行 |
+|--------|------|--------|
+| zsh | デフォルトシェルを zsh に変更 | ⏭️ スキップ |
+| ssh-agent | wsl2-ssh-agent（1Password SSH Agent 連携） | ⏭️ スキップ |
+| mise | mise（ランタイムバージョン管理） | 🔄 最新化 |
+| starship | Starship プロンプト | 🔄 最新化 |
+| eza | eza（ls 代替） | ⏭️ スキップ |
+| fzf | fzf（ファジーファインダー） | ⏭️ スキップ |
+| gh | GitHub CLI 認証 | ⏭️ スキップ |
+| gh-dash | gh-dash（GitHub ダッシュボード） | 🔄 最新化 |
+| lazygit | lazygit（Git TUI） | ⏭️ スキップ |
+| zellij | zellij（ターミナルマルチプレクサ） | ⏭️ スキップ |
+| claude-code | Claude Code CLI | 🔄 最新化 |
+| doom-emacs | Doom Emacs（クローン + インストール） | 🔄 最新化 |
+| chezmoi | chezmoi + dotfiles の適用 | 🔄 最新化 |
+
+### 手動アップデート
+
+セットアップスクリプトでスキップされるモジュールを更新するには:
+
+```bash
+# apt 管理（packages, eza）
+sudo apt update && sudo apt upgrade
+
+# fzf / lazygit / zellij / ssh-agent
+rm ~/.local/bin/{fzf,lazygit,zellij,wsl2-ssh-agent}
+# → その後 setup を再実行
+```
 
 ### apt パッケージ一覧
 
 `config/packages.txt` で管理:
 
 - build-essential, curl, wget, unzip
-- ripgrep, fd-find, bat, fzf
+- ripgrep, fd-find, bat, cmake
 - zsh
 
 ## ディレクトリ構成
@@ -82,6 +96,7 @@ wsl-ubuntu-setup/
 │   ├── wsl.sh              # wsl.conf 配置
 │   ├── docker.sh           # Docker Engine
 │   ├── emacs.sh            # Emacs GUI + Doom 依存パッケージ
+│   ├── gh.sh               # GitHub CLI（PPA + インストール）
 │   └── files/
 │       └── wsl.conf
 └── user/
@@ -91,7 +106,7 @@ wsl-ubuntu-setup/
     ├── starship.sh         # Starship
     ├── eza.sh              # eza
     ├── fzf.sh              # fzf
-    ├── gh.sh               # GitHub CLI
+    ├── gh.sh               # GitHub CLI 認証
     ├── gh-dash.sh          # gh-dash
     ├── lazygit.sh          # lazygit
     ├── zellij.sh           # zellij
