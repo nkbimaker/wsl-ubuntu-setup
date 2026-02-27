@@ -28,7 +28,6 @@ USER_MODULES=(
   fzf
   gh
   gh-dash
-  lazygit
   zellij
   claude-code
   doom-emacs

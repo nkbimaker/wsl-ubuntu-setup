@@ -53,7 +53,6 @@ bash setup.sh
 | fzf | fzf（ファジーファインダー） | ⏭️ スキップ |
 | gh | GitHub CLI 認証 | ⏭️ スキップ |
 | gh-dash | gh-dash（GitHub ダッシュボード） | 🔄 最新化 |
-| lazygit | lazygit（Git TUI） | ⏭️ スキップ |
 | zellij | zellij（ターミナルマルチプレクサ） | ⏭️ スキップ |
 | claude-code | Claude Code CLI | 🔄 最新化 |
 | doom-emacs | Doom Emacs（クローン + インストール） | 🔄 最新化 |
@@ -66,8 +65,8 @@ bash setup.sh
 # apt 管理（packages, eza）
 sudo apt update && sudo apt upgrade
 
-# fzf / lazygit / zellij / ghq / ssh-agent
-rm ~/.local/bin/{fzf,lazygit,zellij,ghq,wsl2-ssh-agent}
+# fzf / zellij / ghq / ssh-agent
+rm ~/.local/bin/{fzf,zellij,ghq,wsl2-ssh-agent}
 # → その後 setup を再実行
 ```
 
@@ -111,7 +110,6 @@ wsl-ubuntu-setup/
     ├── fzf.sh              # fzf
     ├── gh.sh               # GitHub CLI 認証
     ├── gh-dash.sh          # gh-dash
-    ├── lazygit.sh          # lazygit
     ├── zellij.sh           # zellij
     ├── claude-code.sh      # Claude Code
     └── doom-emacs.sh       # Doom Emacs
