@@ -16,15 +16,6 @@ else
   fc-cache -fv
 fi
 
-# fd シンボリックリンク（fd-find → fd）
-if has_command fd; then
-  log_skip "fd symlink"
-else
-  log_info "Creating fd symlink..."
-  mkdir -p "$HOME/.local/bin"
-  ln -s "$(which fdfind)" "$HOME/.local/bin/fd"
-fi
-
 # Doom Emacs クローン（XDG 準拠）
 if [ -d "$HOME/.config/emacs" ]; then
   log_skip "Doom Emacs repository"

@@ -20,3 +20,16 @@ if [ -n "$TO_INSTALL" ]; then
   sudo apt update
   sudo apt install -y $TO_INSTALL
 fi
+
+# Ubuntu のコマンド名問題を解消するシンボリックリンク
+for pair in "fdfind:fd" "batcat:bat"; do
+  src="${pair%%:*}"
+  dest="${pair##*:}"
+  if has_command "$dest"; then
+    log_skip "$dest symlink"
+  elif has_command "$src"; then
+    log_info "Creating $dest symlink..."
+    mkdir -p "$HOME/.local/bin"
+    ln -s "$(which "$src")" "$HOME/.local/bin/$dest"
+  fi
+done
