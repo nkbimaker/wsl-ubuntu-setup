@@ -15,10 +15,13 @@ else
 fi
 
 # dotfiles
-if [ -d "$HOME/.local/share/chezmoi" ]; then
+if [ -d "$DOTFILES_DIR" ]; then
   log_info "Updating dotfiles..."
-  chezmoi init --apply
+  git -C "$DOTFILES_DIR" pull
 else
-  log_info "Initializing dotfiles..."
-  chezmoi init --apply "$DOTFILES_REPO"
+  log_info "Cloning dotfiles..."
+  git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
 fi
+
+log_info "Applying dotfiles..."
+chezmoi init --apply --source "$DOTFILES_DIR"

@@ -45,7 +45,7 @@ bash setup.sh
 |--------|------|--------|
 | zsh | デフォルトシェルを zsh に変更 | ⏭️ スキップ |
 | ssh-agent | wsl2-ssh-agent（1Password SSH Agent 連携） | ⏭️ スキップ |
-| chezmoi | chezmoi + dotfiles の適用 | 🔄 最新化 |
+| chezmoi | chezmoi + dotfiles（`~/src` に clone → apply） | 🔄 最新化 |
 | mise | mise（ランタイムバージョン管理）+ ツールインストール | 🔄 最新化 |
 | ghq | ghq（リポジトリ管理） | ⏭️ スキップ |
 | starship | Starship プロンプト | 🔄 最新化 |
