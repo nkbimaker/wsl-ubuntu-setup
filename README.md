@@ -45,7 +45,9 @@ bash setup.sh
 |--------|------|--------|
 | zsh | デフォルトシェルを zsh に変更 | ⏭️ スキップ |
 | ssh-agent | wsl2-ssh-agent（1Password SSH Agent 連携） | ⏭️ スキップ |
-| mise | mise（ランタイムバージョン管理） | 🔄 最新化 |
+| chezmoi | chezmoi + dotfiles の適用 | 🔄 最新化 |
+| mise | mise（ランタイムバージョン管理）+ ツールインストール | 🔄 最新化 |
+| ghq | ghq（リポジトリ管理） | ⏭️ スキップ |
 | starship | Starship プロンプト | 🔄 最新化 |
 | eza | eza（ls 代替） | ⏭️ スキップ |
 | fzf | fzf（ファジーファインダー） | ⏭️ スキップ |
@@ -55,7 +57,6 @@ bash setup.sh
 | zellij | zellij（ターミナルマルチプレクサ） | ⏭️ スキップ |
 | claude-code | Claude Code CLI | 🔄 最新化 |
 | doom-emacs | Doom Emacs（クローン + インストール） | 🔄 最新化 |
-| chezmoi | chezmoi + dotfiles の適用 | 🔄 最新化 |
 
 ### 手動アップデート
 
@@ -65,8 +66,8 @@ bash setup.sh
 # apt 管理（packages, eza）
 sudo apt update && sudo apt upgrade
 
-# fzf / lazygit / zellij / ssh-agent
-rm ~/.local/bin/{fzf,lazygit,zellij,wsl2-ssh-agent}
+# fzf / lazygit / zellij / ghq / ssh-agent
+rm ~/.local/bin/{fzf,lazygit,zellij,ghq,wsl2-ssh-agent}
 # → その後 setup を再実行
 ```
 
@@ -102,7 +103,9 @@ wsl-ubuntu-setup/
 └── user/
     ├── zsh.sh              # zsh デフォルトシェル設定
     ├── ssh-agent.sh        # wsl2-ssh-agent
-    ├── mise.sh             # mise
+    ├── chezmoi.sh          # chezmoi + dotfiles
+    ├── mise.sh             # mise + ツールインストール
+    ├── ghq.sh              # ghq
     ├── starship.sh         # Starship
     ├── eza.sh              # eza
     ├── fzf.sh              # fzf
@@ -111,6 +114,5 @@ wsl-ubuntu-setup/
     ├── lazygit.sh          # lazygit
     ├── zellij.sh           # zellij
     ├── claude-code.sh      # Claude Code
-    ├── doom-emacs.sh       # Doom Emacs
-    └── chezmoi.sh          # chezmoi + dotfiles
+    └── doom-emacs.sh       # Doom Emacs
 ```

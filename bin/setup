@@ -20,7 +20,9 @@ SYSTEM_MODULES=(
 USER_MODULES=(
   zsh
   ssh-agent
+  chezmoi
   mise
+  ghq
   starship
   eza
   fzf
@@ -30,7 +32,6 @@ USER_MODULES=(
   zellij
   claude-code
   doom-emacs
-  chezmoi
 )
 
 echo ""

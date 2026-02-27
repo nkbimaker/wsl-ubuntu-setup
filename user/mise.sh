@@ -12,3 +12,7 @@ else
   log_info "Installing mise..."
   curl https://mise.run | sh
 fi
+
+# mise で定義されたツール (go など) をインストール
+log_info "Installing mise tools..."
+mise install
