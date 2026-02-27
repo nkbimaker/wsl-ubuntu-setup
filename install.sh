@@ -29,3 +29,11 @@ echo "Linked: ~/.local/bin/setup-wsl -> $DEST/bin/setup"
 
 # メイン処理実行
 bash "$DEST/bin/setup"
+
+# remote を SSH に切り替え
+SSH_REMOTE="git@github.com:nkbimaker/wsl-ubuntu-setup.git"
+CURRENT_REMOTE=$(git -C "$DEST" remote get-url origin 2>/dev/null || true)
+if [ "$CURRENT_REMOTE" != "$SSH_REMOTE" ]; then
+  git -C "$DEST" remote set-url origin "$SSH_REMOTE"
+  echo "Remote URL switched to SSH: $SSH_REMOTE"
+fi
